@@ -1,0 +1,57 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.recipesback.Mapper.MainMapper">
+    <select id="getFoodRecipes">
+        SELECT *
+        FROM (
+            SELECT
+                postId,
+                user,
+                title,
+                imageSrc,
+                createdAt,
+                views
+            FROM recipes
+            <if test="category!='home' and searchText==null">
+                WHERE category = #{category}
+            </if>
+            <if test="searchText!=null">
+                WHERE title LIKE CONCAT('%', #{searchText}, '%')
+            </if>
+        ) AS POSTS
+        <if test="order=='recommend'">
+            ORDER BY title;
+        </if>
+        <if test="order=='new'">
+            ORDER BY createdAt DESC;
+        </if>
+        <if test="order=='view'">
+            ORDER BY views DESC;
+        </if>
+    </select>
+    <select id="getNextNo" resultType="java.lang.String">
+        SELECT
+            MAX(postId)+1
+        FROM
+            recipes;
+
+    </select>
+    <insert id="createFoodRecipe" parameterType="com.example.recipesback.Vo.CreateFoodRecipe">
+        INSERT INTO recipes (
+            user,
+            title,
+            description,
+            category,
+            createdAt,
+            imageSrc
+        )
+        VALUES (
+                   #{user},
+                   #{title},
+                   #{desc},
+                   #{category},
+                   #{createdAt},
+                   #{imageSrc}
+               )
+    </insert>
+</mapper>
