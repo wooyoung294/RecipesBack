@@ -15,4 +15,6 @@ public interface MainMapper {
     String getNextNo();
 
     FoodRecipeVo getFoodRecipeDetail(String postId);
+
+    int increaseViewCount(String postId);
 }

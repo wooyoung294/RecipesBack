@@ -11,4 +11,6 @@ public interface MainService {
     int createFoodRecipe(String user, String title, String desc, MultipartFile imageSrc, String createdAt, String category);
 
     FoodRecipeVo getFoodRecipeDetail(String postId);
+
+    int increaseViewCount(String postId);
 }

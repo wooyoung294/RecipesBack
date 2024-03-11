@@ -99,6 +99,11 @@ public class MainServiceImpl implements MainService{
         return recipeVo;
     }
 
+    @Override
+    public int increaseViewCount(String postId) {
+        return mainMapper.increaseViewCount(postId);
+    }
+
     private static String encodeImage(String imagePath) throws Exception {
         Path path = Paths.get(imagePath);
         byte[] imageBytes = Files.readAllBytes(path);

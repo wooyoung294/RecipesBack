@@ -63,4 +63,9 @@
         FROM recipes
         WHERE postId = #{postId}
     </select>
+    <update id="increaseViewCount">
+        UPDATE recipes
+           SET views = views + 1
+        WHERE postId =#{postId}
+    </update>
 </mapper>

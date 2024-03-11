@@ -47,4 +47,10 @@ public class MainController {
 
         return mainService.createFoodRecipe(user,title,desc,imageSrc,createdAt,category);
     }
+    @PatchMapping("/increaseViewCount")
+    public int increaseViewCount(
+            @RequestParam("postId") String postId
+    ){
+        return mainService.increaseViewCount(postId);
+    }
 }
