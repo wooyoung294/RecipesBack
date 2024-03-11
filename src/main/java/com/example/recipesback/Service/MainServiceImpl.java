@@ -30,7 +30,6 @@ public class MainServiceImpl implements MainService{
             for (FoodRecipeVo post : recipeVoList) {
                 String base64Image = encodeImage(uploadDir+ "/"+ post.getPostId() + "/"+post.getImageSrc());
 
-                // AuctionTableVo의 img 필드에 Base64 이미지 문자열 설정
                 post.setImageSrc(base64Image);
             }
 
@@ -84,6 +83,22 @@ public class MainServiceImpl implements MainService{
         }
 
     }
+
+    @Override
+    public FoodRecipeVo getFoodRecipeDetail(String postId) {
+        FoodRecipeVo recipeVo = mainMapper.getFoodRecipeDetail(postId);
+        try {
+            String base64Image = encodeImage(uploadDir+ "/"+ recipeVo.getPostId() + "/"+recipeVo.getImageSrc());
+
+            recipeVo.setImageSrc(base64Image);
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return recipeVo;
+    }
+
     private static String encodeImage(String imagePath) throws Exception {
         Path path = Paths.get(imagePath);
         byte[] imageBytes = Files.readAllBytes(path);

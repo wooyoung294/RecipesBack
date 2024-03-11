@@ -9,6 +9,7 @@ public class FoodRecipeVo {
     private String title;
     private String imageSrc;
     private String createdAt;
+    private String description;
     private int views;
 
 }

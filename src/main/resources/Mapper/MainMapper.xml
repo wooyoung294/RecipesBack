@@ -54,4 +54,13 @@
                    #{imageSrc}
                )
     </insert>
+    <select id="getFoodRecipeDetail">
+        SELECT
+            postId,
+            title,
+            imageSrc,
+            description
+        FROM recipes
+        WHERE postId = #{postId}
+    </select>
 </mapper>

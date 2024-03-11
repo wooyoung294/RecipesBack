@@ -29,6 +29,12 @@ public class MainController {
         }
         return mainService.getFoodRecipes(category,order,searchText);
     }
+    @GetMapping("/food/detail")
+    public FoodRecipeVo getFoodRecipeDetail(
+            @RequestParam("postId") String postId
+    ){
+        return mainService.getFoodRecipeDetail(postId);
+    }
     @PostMapping("/createFood")
     public int createFoodRecipe(
             @RequestParam("user") String user,

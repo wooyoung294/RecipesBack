@@ -13,4 +13,6 @@ public interface MainMapper {
     int createFoodRecipe(CreateFoodRecipe createFoodRecipe);
 
     String getNextNo();
+
+    FoodRecipeVo getFoodRecipeDetail(String postId);
 }

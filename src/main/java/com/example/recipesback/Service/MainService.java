@@ -9,4 +9,6 @@ public interface MainService {
     List<FoodRecipeVo> getFoodRecipes(String category, String order, String searchText);
 
     int createFoodRecipe(String user, String title, String desc, MultipartFile imageSrc, String createdAt, String category);
+
+    FoodRecipeVo getFoodRecipeDetail(String postId);
 }
