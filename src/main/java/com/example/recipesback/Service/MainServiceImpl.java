@@ -24,8 +24,9 @@ public class MainServiceImpl implements MainService{
     }
 
     @Override
-    public List<FoodRecipeVo> getFoodRecipes(String category, String order, String searchText) {
-        List<FoodRecipeVo> recipeVoList = mainMapper.getFoodRecipes(category,order,searchText);
+    public List<FoodRecipeVo> getFoodRecipes(String category, String order, String searchText, int cursor) {
+        int offset = cursor * 10;
+        List<FoodRecipeVo> recipeVoList = mainMapper.getFoodRecipes(category,order,searchText,offset);
         try {
             for (FoodRecipeVo post : recipeVoList) {
                 String base64Image = encodeImage(uploadDir+ "/"+ post.getPostId() + "/"+post.getImageSrc());
@@ -102,6 +103,11 @@ public class MainServiceImpl implements MainService{
     @Override
     public int increaseViewCount(String postId) {
         return mainMapper.increaseViewCount(postId);
+    }
+
+    @Override
+    public int getTotalCount(String category, String order, String searchText) {
+        return mainMapper.getTotalCount(category,order,searchText);
     }
 
     private static String encodeImage(String imagePath) throws Exception {

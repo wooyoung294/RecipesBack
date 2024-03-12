@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface MainMapper {
 
-    List<FoodRecipeVo> getFoodRecipes(String category, String order, String searchText);
+    List<FoodRecipeVo> getFoodRecipes(String category, String order, String searchText, int offset);
 
     int createFoodRecipe(CreateFoodRecipe createFoodRecipe);
 
@@ -17,4 +17,6 @@ public interface MainMapper {
     FoodRecipeVo getFoodRecipeDetail(String postId);
 
     int increaseViewCount(String postId);
+
+    int getTotalCount(String category, String order, String searchText);
 }

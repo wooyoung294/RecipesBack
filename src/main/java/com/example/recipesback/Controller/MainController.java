@@ -22,12 +22,26 @@ public class MainController {
     public List<FoodRecipeVo> getFoodRecipes(
             @RequestParam("category") String category,
             @RequestParam("order") String order,
+            @RequestParam("searchText") String searchText,
+            @RequestParam("cursor") int cursor
+    ){
+        if(searchText == ""){
+            searchText = null;
+        }
+
+        return mainService.getFoodRecipes(category,order,searchText,cursor);
+    }
+    @GetMapping("/count")
+    public int getTotalCount(
+            @RequestParam("category") String category,
+            @RequestParam("order") String order,
             @RequestParam("searchText") String searchText
     ){
         if(searchText == ""){
             searchText = null;
         }
-        return mainService.getFoodRecipes(category,order,searchText);
+
+        return mainService.getTotalCount(category,order,searchText);
     }
     @GetMapping("/food/detail")
     public FoodRecipeVo getFoodRecipeDetail(

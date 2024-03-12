@@ -20,13 +20,26 @@
             </if>
         ) AS POSTS
         <if test="order=='recommend'">
-            ORDER BY title;
+            ORDER BY title
+            LIMIT 14 OFFSET #{offset};
         </if>
         <if test="order=='new'">
-            ORDER BY createdAt DESC;
+            ORDER BY createdAt DESC
+            LIMIT 14 OFFSET #{offset};
         </if>
         <if test="order=='view'">
-            ORDER BY views DESC;
+            ORDER BY views DESC
+            LIMIT 14 OFFSET #{offset};
+        </if>
+    </select>
+    <select id="getTotalCount">
+        SELECT COUNT(*)
+        FROM recipes
+        <if test="category!='home' and searchText==null">
+            WHERE category = #{category}
+        </if>
+        <if test="searchText!=null">
+            WHERE title LIKE CONCAT('%', #{searchText}, '%')
         </if>
     </select>
     <select id="getNextNo" resultType="java.lang.String">

@@ -6,11 +6,13 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 public interface MainService {
-    List<FoodRecipeVo> getFoodRecipes(String category, String order, String searchText);
+    List<FoodRecipeVo> getFoodRecipes(String category, String order, String searchText, int cursor);
 
     int createFoodRecipe(String user, String title, String desc, MultipartFile imageSrc, String createdAt, String category);
 
     FoodRecipeVo getFoodRecipeDetail(String postId);
 
     int increaseViewCount(String postId);
+
+    int getTotalCount(String category, String order, String searchText);
 }
