@@ -25,7 +25,7 @@ public class MainServiceImpl implements MainService{
 
     @Override
     public List<FoodRecipeVo> getFoodRecipes(String category, String order, String searchText, int cursor) {
-        int offset = cursor * 10;
+        int offset = cursor * 14;
         List<FoodRecipeVo> recipeVoList = mainMapper.getFoodRecipes(category,order,searchText,offset);
         try {
             for (FoodRecipeVo post : recipeVoList) {
