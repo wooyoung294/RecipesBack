@@ -14,7 +14,8 @@ public class CorsConfig {
 
         // 특정 origins 허용
 //        config.addAllowedOrigin("http://localhost:3000");
-        config.addAllowedOrigin("http://34.47.89.103");
+//        config.addAllowedOrigin("http://34.47.89.103");
+        config.addAllowedOrigin("http://yorijori.wooyu.world");
 
         // 특정 HTTP 메서드 허용
         config.addAllowedMethod("OPTIONS");
